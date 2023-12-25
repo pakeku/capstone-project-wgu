@@ -13,12 +13,20 @@ jobs:
         node-version: [14.x, 16.x, 18.x]
 
     steps:
-        - uses: actions/checkout@v3
-        - name: Use Node.js ${{ matrix.node-version }}
-          uses: actions/setup-node@v3
-          with:
-            node-version: ${{ matrix.node-version }}
-            cache: 'npm'
-        - run: npm ci
-        - run: npm run build --if-present
-        - run: npm test
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      # Check if lock files exist, if not, install dependencies
+      - name: Check for lock files and install dependencies if missing
+        run: |
+          if [ ! -f "package-lock.json" ] && [ ! -f "yarn.lock" ]; then
+            echo "No lock files found, installing dependencies..."
+            npm install
+          fi
+
+      - run: npm run build --if-present
+      - run: npm test
