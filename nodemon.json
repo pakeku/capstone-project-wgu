@@ -1,7 +1,0 @@
-{
-    "watch": ["src"],
-    "ext": "ts",
-    "exec": "concurrently \"npx tsc --watch\" \"ts-node src/index.ts\"",
-    "_comment": "Developers, beware of potential logging conflicts between nodemon and TypeScript Compiler when concurrently displaying logs on screen"
-}
-  
