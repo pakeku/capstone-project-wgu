@@ -1,13 +1,13 @@
 import { auth, AuthOptions } from 'express-oauth2-jwt-bearer';
 import { RequestHandler } from 'express';
-import { env } from '@utils';
+import { envVariableCheck } from '@utils/checkEnvVariables';
 
 export const checkJwt = (): RequestHandler | undefined => {
     const requiredEnvVariables: string[] = ['AUTH0_API_AUDIENCE', 'AUTH0_API_ISSUER_BASE_URL'];
 
     try {
         // Check if required environment variables are present
-        env.envVariableCheck(requiredEnvVariables, () => {
+        envVariableCheck(requiredEnvVariables, () => {
             const options: AuthOptions = {
                 audience: process.env.AUTH0_API_AUDIENCE as string,
                 issuerBaseURL: process.env.AUTH0_API_ISSUER_BASE_URL as string,
