@@ -25,6 +25,7 @@ describe('Environment Variables', () => {
     it('should return a valid token', async () => {
         const errorMessage = 'Failed to fetch test token:';
         try {
+            await process.nextTick(() => { });
             const token = await getTestToken();
             expect(token).toBeDefined();
         } catch (error: any) {

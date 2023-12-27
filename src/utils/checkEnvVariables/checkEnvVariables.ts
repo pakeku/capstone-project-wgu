@@ -1,3 +1,7 @@
+import dotenv from 'dotenv'
+
+dotenv.config();
+
 export const envVariableCheck = (variables: string[], callback: () => void): Promise<void> => {
     return new Promise((resolve, reject) => {
         if (variables.length === 0) {
