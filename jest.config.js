@@ -15,6 +15,7 @@ module.exports = {
       '^@middlewares/(.*)$': '<rootDir>/src/middlewares/$1',
       '^@app$': '<rootDir>/src/app.ts',
       '^@routes/(.*)$': '<rootDir>/src/routes/$1',
+      '^@database/(.*)$': '<rootDir>/src/mongodb/$1',
     },
   };
   

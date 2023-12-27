@@ -15,7 +15,10 @@
       ],
       "@routes/*": [
         "src/routes/*"
-      ]
+      ],
+      "@database/*": [
+        "src/mongodb/*"
+      ],
     },
     "outDir": "./dist",
     "esModuleInterop": true,
