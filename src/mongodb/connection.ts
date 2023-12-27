@@ -5,6 +5,13 @@ let dbConnection: Connection | undefined = undefined;
 
 const requiredEnvVariables = ['MONGO_DB_URI'];
 
+
+export const getConnection = async (): Promise<Connection | undefined> => {
+    if (!dbConnection) {
+        await connectToDatabase();
+    }
+    return dbConnection;
+};
 export const connectToDatabase = async (): Promise<boolean> => {
     if (dbConnection) {
         return true;

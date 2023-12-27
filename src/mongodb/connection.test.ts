@@ -1,4 +1,5 @@
-import { connectToDatabase, disconnectFromDatabase } from '@database/connection';
+import { Connection } from 'mongoose';
+import { connectToDatabase, disconnectFromDatabase, getConnection } from '@database/connection';
 import dotenv from 'dotenv';
 
 describe('Database Connection', () => {
@@ -10,13 +11,21 @@ describe('Database Connection', () => {
         await disconnectFromDatabase();
     })
 
-    it('should connect to the database', async () => {
+    it('should successfully establish a database connection', async () => {
+        // Arrange & Act
         const success = await connectToDatabase();
+        const connection = await getConnection() as Connection;
+
+        // Assert
         expect(success).toBe(true);
+        expect(connection).toBeDefined(); // type of Connection
     });
 
-    it('should disconnect from the database', async () => {
+    it('should disconnect from the database without errors', async () => {
+        // Arrange & Act
         const success = await disconnectFromDatabase();
+
+        // Assert
         expect(success).toBe(true);
     });
 });
