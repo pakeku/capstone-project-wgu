@@ -15,12 +15,10 @@ export const App: React.FC = () => {
   const { isLoading } = useAuth0();
 
   if (isLoading) {
-    return (
-      <div className="page-layout">
-        <PageLoader />
-      </div>
-    );
+    return <PageLoader />
+
   }
+  
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
