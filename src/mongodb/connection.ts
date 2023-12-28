@@ -1,10 +1,9 @@
 import mongoose, { Connection } from 'mongoose';
 import { envVariableCheck } from '@utils/checkEnvVariables';
+import { validateMongoDBAtlasURI } from '@database/validateURI'
 
 let dbConnection: Connection | undefined = undefined;
-
 const requiredEnvVariables = ['MONGO_DB_URI'];
-
 
 export const getConnection = async (): Promise<Connection | undefined> => {
     if (!dbConnection) {
